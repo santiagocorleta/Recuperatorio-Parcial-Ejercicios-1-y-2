@@ -1,0 +1,29 @@
+# lista simple de python (array) de 15 superheroes
+superheroes = ["Ironman", "Hulk", "Thor", "Viuda Negra", "Ojo de Halcón",
+    "Hombre Araña", "Doctor Strange", "Pantera Negra", "Antman", "Avispa",
+    "Bruja Escarlata", "Visión", "Halcón", "Soldado del Invierno", "Capitán América"
+    ]
+ 
+#funcion recursiva  para buscar, determinar si Capitan America esta en la lista.
+def buscar_capitan(lista, indice=0):
+    if indice >= len(lista):
+        return False
+    if lista[indice] == "Capitan America":
+        return True
+    return buscar_capitan(lista, indice + 1)
+
+# funcion recursiva para listar los superheroes de la lista.
+def listar_superheroes(lista, indice=0):
+    if indice >= len(lista):
+        return
+    print(lista[indice])
+    listar_superheroes(lista, indice + 1)
+
+# Cuerpo del codigo
+if buscar_capitan(superheroes):
+    print("Capitan America está en la lista.")
+else:
+    print("Capitan America NO está en la lista.")
+
+print("\nListado de superhéroes:")
+listar_superheroes(superheroes)
