@@ -1,0 +1,93 @@
+from collections import deque
+from personajes import superheroes 
+# Punto 1 Listado ordenado de manera ascendente por nombre de los personajes.
+personajes_por_nombre = list(superheroes)
+
+n = len(personajes_por_nombre)
+for i in range(n - 1):
+    for j in range(0, n - i - 1):
+        # Comparamos el nombre del personaje actual con el siguiente
+        if personajes_por_nombre[j]['name'] > personajes_por_nombre[j + 1]['name']:
+            # Si el orden es incorrecto, los intercambiamos
+            personajes_por_nombre[j], personajes_por_nombre[j + 1] = personajes_por_nombre[j + 1], personajes_por_nombre[j]
+
+print
+print (" Listado de personajes ordenados por nombre ")
+for p in personajes_por_nombre:
+    print(p['name'])
+#punto 2 Determinar en que posicion esta The Thing y Rocket Raccoon.
+posicion_thething = -1
+posicion_rocketraccoon = -1
+
+for i, p in enumerate(superheroes):
+    if p['name'] == "The Thing":
+        posicion_thething = i
+    if p['name'] == "Rocket Raccoon":
+        posicion_rocketraccoon = i
+
+print(" Posiciones de personajes ")
+print(f"The Thing está en la posición: {posicion_thething}")
+print(f"Rocket Raccoon está en la posición: {posicion_rocketraccoon}")
+# Punto 3 Listar todos los villanos de la lista.
+villanos = [p for p in superheroes if p['is_villain']]
+
+print(" Lista de todos los villanos ")
+for v in villanos:
+    print(f"{v['name']}")
+# Punto 4 Poner todos los villanos en una cola para determinar luego cuales aparecieron antes de 1980.
+from collections import deque
+
+cola_villanos = deque(villanos)
+villanos_antes_1980 = []
+
+while cola_villanos:
+    villano_actual = cola_villanos.popleft()
+    if villano_actual['first_appearance'] < 1980:
+        villanos_antes_1980.append(villano_actual)
+
+print(" Villanos que aparecieron antes de 1980 ")
+for v in villanos_antes_1980:
+    print(f"Villano: {v['name']}, Año de aparición: {v['first_appearance']}")
+
+# Punto 5 Listar los superheores que comienzan con  Bl, G, My, y W.
+letras_buscadas = ['Bl', 'G', 'My', 'W']
+personajes_filtrados = []
+
+for p in superheroes:
+    
+    if p['name'].startswith(tuple(letras_buscadas)):
+        personajes_filtrados.append(p)
+
+print(" Personajes que comienzan con Bl, G, My, o W ")
+for p in personajes_filtrados:
+    print(f" {p['name']}")
+
+# Punto 6 Listado de personajes ordenado por nombre real de manera ascendente de los personajes
+personajes_con_nombre_real = [p for p in superheroes if p['real_name']]
+
+n = len(personajes_con_nombre_real)
+for i in range(n - 1):
+    for j in range(0, n - i - 1):
+        if personajes_con_nombre_real[j]['real_name'] > personajes_con_nombre_real[j + 1]['real_name']:
+            personajes_con_nombre_real[j], personajes_con_nombre_real[j + 1] = personajes_con_nombre_real[j + 1], personajes_con_nombre_real[j]
+
+print(" Personajes ordenados por nombre real ")
+for p in personajes_con_nombre_real:
+    print(f" {p['real_name']}, Personaje: {p['name']}")
+# Punto 7 Listado de superheroes ordenados por fecha de aparación.
+personajes_por_anio = list(superheroes)
+
+n = len(personajes_por_anio)
+for i in range(n - 1):
+    for j in range(0, n - i - 1):
+        if personajes_por_anio[j]['first_appearance'] > personajes_por_anio[j + 1]['first_appearance']:
+            personajes_por_anio[j], personajes_por_anio[j + 1] = personajes_por_anio[j + 1], personajes_por_anio[j]
+
+print(" Personajes ordenados por año de aparición ")
+for p in personajes_por_anio:
+    print(f"Año: {p['first_appearance']}, Nombre: {p['name']}")
+# Punto 8 Modificar el nombre real de Ant Man a Scott Lang.
+
+# Punto 9 Mostrar los personajes que en su biografia incluyan la palabra time-traveling o suit.
+
+# Punto 10 Eliminar a Electro y Baron Zemo de la lista y mostrar su información si estaba en la lista.
